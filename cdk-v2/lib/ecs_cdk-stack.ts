@@ -8,26 +8,33 @@ import * as codebuild from 'aws-cdk-lib/aws-codebuild';
 import * as codepipeline from 'aws-cdk-lib/aws-codepipeline';
 import * as codepipeline_actions from 'aws-cdk-lib/aws-codepipeline-actions';
 import { Construct } from 'constructs';
+import { LoadBalancer } from 'aws-cdk-lib/aws-elasticloadbalancing';
+import { ApplicationListener, ApplicationListenerRule, ApplicationProtocol, ApplicationProtocolVersion, ApplicationTargetGroup, IApplicationLoadBalancerTarget, IApplicationTargetGroup, IpAddressType, ListenerAction, ListenerCondition, Protocol, TargetType } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import { IpTarget } from 'aws-cdk-lib/aws-elasticloadbalancingv2-targets';
+import { config } from '../config/config';
+import { Duration } from 'aws-cdk-lib';
+import { ApplicationMultipleTargetGroupsFargateService, ApplicationMultipleTargetGroupsFargateServiceProps, ScheduledEc2TaskDefinitionOptions } from 'aws-cdk-lib/aws-ecs-patterns';
+import { SelectedSubnets, SubnetSelection } from 'aws-cdk-lib/aws-ec2';
 
 export class EcsCdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
     const githubUserName = new cdk.CfnParameter(this, "githubUserName", {
-        type: "String",
-        description: "Github username for source code repository"
+      type: "String",
+      description: "Github username for source code repository"
     })
 
     const githubRepository = new cdk.CfnParameter(this, "githubRespository", {
-        type: "String",
-        description: "Github source code repository",
-        default: "amazon-ecs-fargate-cdk-v2-cicd" 
+      type: "String",
+      description: "Propapay Authentication Service API - Github source code repository",
+      default: "propapay-authentication-service"
     })
 
     const githubPersonalTokenSecretName = new cdk.CfnParameter(this, "githubPersonalTokenSecretName", {
-        type: "String",
-        description: "The name of the AWS Secrets Manager Secret which holds the GitHub Personal Access Token for this project.",
-        default: "/aws-samples/amazon-ecs-fargate-cdk-v2-cicd/github/personal_access_token" 
+      type: "String",
+      description: "The name of the AWS Secrets Manager Secret which holds the GitHub Personal Access Token for this project.",
+      default: "/aws-samples/amazon-ecs-fargate-cdk-v2-cicd/github/personal_access_token"
     })
     //default: `${this.stackName}`
 
@@ -36,10 +43,8 @@ export class EcsCdkStack extends cdk.Stack {
     /**
      * create a new vpc with single nat gateway
      */
-    const vpc = new ec2.Vpc(this, 'ecs-cdk-vpc', {
-      cidr: '10.0.0.0/16',
-      natGateways: 1,
-      maxAzs: 3  /* does a sample need 3 az's? */
+    const vpc = ec2.Vpc.fromLookup(this, 'ecs-cdk-vpc', {
+      vpcId: "vpc-019e94ba861d92f85"
     });
 
     const clusteradmin = new iam.Role(this, 'adminrole', {
@@ -56,66 +61,125 @@ export class EcsCdkStack extends cdk.Stack {
 
     const taskrole = new iam.Role(this, `ecs-taskrole-${this.stackName}`, {
       roleName: `ecs-taskrole-${this.stackName}`,
-      assumedBy: new iam.ServicePrincipal('ecs-tasks.amazonaws.com')
+      assumedBy: new iam.ServicePrincipal('ecs-tasks.amazonaws.com'),
     });
-
-
 
     // ***ecs contructs***
 
-    const executionRolePolicy =  new iam.PolicyStatement({
+    const executionRolePolicy = new iam.PolicyStatement({
       effect: iam.Effect.ALLOW,
       resources: ['*'],
       actions: [
-                "ecr:getauthorizationtoken",
-                "ecr:batchchecklayeravailability",
-                "ecr:getdownloadurlforlayer",
-                "ecr:batchgetimage",
-                "logs:createlogstream",
-                "logs:putlogevents"
-            ]
+        "ecr:getauthorizationtoken",
+        "ecr:batchchecklayeravailability",
+        "ecr:getdownloadurlforlayer",
+        "ecr:batchgetimage",
+        "logs:createlogstream",
+        "logs:putlogevents"
+      ]
     });
 
+
     const taskDef = new ecs.FargateTaskDefinition(this, "ecs-taskdef", {
-      taskRole: taskrole
+      taskRole: taskrole,
+      memoryLimitMiB: 2048,
     });
 
     taskDef.addToExecutionRolePolicy(executionRolePolicy);
 
-    const baseImage = 'public.ecr.aws/amazonlinux/amazonlinux:2022'
-    const container = taskDef.addContainer('flask-app', {
+
+    const baseImage = '539763292489.dkr.ecr.us-east-1.amazonaws.com/propapay-authentication-service'
+    const container = taskDef.addContainer(config.serviceName, {
       image: ecs.ContainerImage.fromRegistry(baseImage),
-      memoryLimitMiB: 256,
-      cpu: 256,
-      logging
+      memoryLimitMiB: 2048,
+      healthCheck: {
+        command: [
+          "CMD-SHELL",
+          "curl -f http://localhost:5555/auth/health || exit 1"
+        ],
+        interval: Duration.seconds(240),
+        timeout: Duration.seconds(60),
+        retries: 5,
+        startPeriod: Duration.seconds(30)
+      },
     });
 
     container.addPortMappings({
-      containerPort: 5000,
+      containerPort: config.port,
       protocol: ecs.Protocol.TCP
     });
 
-    const fargateService = new ecs_patterns.ApplicationLoadBalancedFargateService(this, "ecs-service", {
-      cluster: cluster,
-      taskDefinition: taskDef,
-      publicLoadBalancer: true,
-      desiredCount: 1,
-      listenerPort: 80
+
+
+
+    /*  cdk cannot manage loadbalancers it did not create
+    const applicationLoadBalancerArn = 'arn:aws:elasticlobalancing:us-east-1:539763292489:loadbalancer/app/propapay-alb/26d19fc20555ffdf'
+    const loadBalancer = cdk.aws_elasticloadbalancingv2.ApplicationLoadBalancer.fromLookup(this, 'ALB', {
+      loadBalancerArn: applicationLoadBalancerArn
+    })
+    */
+    const targetGroup: IApplicationTargetGroup = new ApplicationTargetGroup(this, `${config.serviceName}TargetGroup`, {
+      targetGroupName: `${config.serviceName}TG`,
+      vpc: vpc,
+      targetType: TargetType.IP,
+      port: config.port,
+      protocol: ApplicationProtocol.HTTP,
+      protocolVersion: ApplicationProtocolVersion.HTTP1,
+      healthCheck: {
+        enabled: true,
+        path: "/auth/health",
+        port: '5555',
+        protocol: Protocol.HTTP,
+        interval: Duration.seconds(240),
+        timeout: Duration.seconds(60),
+        unhealthyThresholdCount: 5,
+        healthyHttpCodes: "200",
+      },
     });
 
+    const albListener = ApplicationListener.fromLookup(this, `${config.serviceName}AlbListener`, {
+      listenerArn: 'arn:aws:elasticloadbalancing:us-east-1:539763292489:listener/app/propapay-alb/26d19fc20555ffdf/ff03934b92e8d554',
+    })
 
-    /* where do these constants come from? 6, 10, 60? */
+    const albListenerRule = new ApplicationListenerRule(this, `${config.serviceName}AlbListenerRule`, {
+      listener: albListener,
+      priority: 123,
+      //action: new ListenerAction(targetGroup)
+      conditions: [
+        ListenerCondition.hostHeaders(['api.propapay.propagately.com']),
+        ListenerCondition.pathPatterns(['/auth*', '/doc*']),
+      ],
+      targetGroups: [targetGroup],
+    })
 
-    const scaling = fargateService.service.autoScaleTaskCount({ maxCapacity: 6 });
+    targetGroup.registerListener(albListener);
+
+    const subnet1 = cdk.aws_ec2.Subnet.fromSubnetId(this, `${config.serviceName}Subnet1`, 'subnet-054667646fd339cb4');
+    const subnet2 = cdk.aws_ec2.Subnet.fromSubnetId(this, `${config.serviceName}Subnet2`, 'subnet-0e5c3fb4ddd065fc7');
+
+    const fargateService = new cdk.aws_ecs.FargateService(this, `${config.serviceName}`, {
+      serviceName: `${config.serviceName}`,
+      cluster: cluster,
+      //targetGroups: [targetGroup.],
+      taskDefinition: taskDef,
+      desiredCount: 1,
+      enableExecuteCommand: true,
+      healthCheckGracePeriod: Duration.seconds(60),
+      vpcSubnets: {
+        subnets: [subnet1, subnet2]
+      },
+      assignPublicIp: true,
+    })
+
+    fargateService.attachToApplicationTargetGroup(targetGroup)
+    //albListenerRule.(targetGroup)
+
+    const scaling = fargateService.autoScaleTaskCount({ maxCapacity: 6 });
     scaling.scaleOnCpuUtilization('cpuscaling', {
-      targetUtilizationPercent: 10,
+      targetUtilizationPercent: 50,
       scaleInCooldown: cdk.Duration.seconds(60),
       scaleOutCooldown: cdk.Duration.seconds(60)
     });
-
-
-
-
 
     const gitHubSource = codebuild.Source.gitHub({
       owner: githubUserName.valueAsString,
@@ -161,7 +225,11 @@ export class EcsCdkStack extends cdk.Stack {
           },
           build: {
             commands: [
-              'cd flask-docker-app',
+              'cd src',
+              'npm install',
+              'npx prisma generate',
+              'npm run build',
+
               `docker build -t $ecr_repo_uri:$tag .`,
               '$(aws ecr get-login --no-include-email)',
               'docker push $ecr_repo_uri:$tag'
@@ -213,7 +281,7 @@ export class EcsCdkStack extends cdk.Stack {
 
     const deployAction = new codepipeline_actions.EcsDeployAction({
       actionName: 'deployAction',
-      service: fargateService.service,
+      service: fargateService,
       imageFile: new codepipeline.ArtifactPath(buildOutput, `imagedefinitions.json`)
     });
 
@@ -253,13 +321,13 @@ export class EcsCdkStack extends cdk.Stack {
         "ecr:batchchecklayeravailability",
         "ecr:batchgetimage",
         "ecr:getdownloadurlforlayer"
-        ],
+      ],
       resources: [`${cluster.clusterArn}`],
     }));
 
 
-    new cdk.CfnOutput(this, "image", { value: ecrRepo.repositoryUri+":latest"} )
-    new cdk.CfnOutput(this, 'loadbalancerdns', { value: fargateService.loadBalancer.loadBalancerDnsName });
+    new cdk.CfnOutput(this, "image", { value: ecrRepo.repositoryUri + ":latest" })
+    new cdk.CfnOutput(this, 'loadbalancerdns', { value: "propapay-alb-578813700.us-east-1.elb.amazonaws.com" });
   }
 
 

@@ -1,0 +1,70 @@
+{
+  "availability-zones:account=539763292489:region=us-east-1": [
+    "us-east-1a",
+    "us-east-1b",
+    "us-east-1c",
+    "us-east-1d",
+    "us-east-1e",
+    "us-east-1f"
+  ],
+  "vpc-provider:account=539763292489:filter.vpc-id=vpc-019e94ba861d92f85:region=us-east-1:returnAsymmetricSubnets=true": {
+    "vpcId": "vpc-019e94ba861d92f85",
+    "vpcCidrBlock": "172.31.0.0/16",
+    "availabilityZones": [],
+    "subnetGroups": [
+      {
+        "name": "Public",
+        "type": "Public",
+        "subnets": [
+          {
+            "subnetId": "subnet-0d362912f8f48d073",
+            "cidr": "172.31.32.0/20",
+            "availabilityZone": "us-east-1a",
+            "routeTableId": "rtb-0c01ec4f9e73940cb"
+          },
+          {
+            "subnetId": "subnet-0b740793107c5bbdc",
+            "cidr": "172.31.0.0/20",
+            "availabilityZone": "us-east-1b",
+            "routeTableId": "rtb-0c01ec4f9e73940cb"
+          },
+          {
+            "subnetId": "subnet-0d95ea63a37629563",
+            "cidr": "172.31.80.0/20",
+            "availabilityZone": "us-east-1c",
+            "routeTableId": "rtb-0c01ec4f9e73940cb"
+          },
+          {
+            "subnetId": "subnet-0e5c3fb4ddd065fc7",
+            "cidr": "172.31.16.0/20",
+            "availabilityZone": "us-east-1d",
+            "routeTableId": "rtb-0c01ec4f9e73940cb"
+          },
+          {
+            "subnetId": "subnet-054667646fd339cb4",
+            "cidr": "172.31.48.0/20",
+            "availabilityZone": "us-east-1e",
+            "routeTableId": "rtb-0c01ec4f9e73940cb"
+          },
+          {
+            "subnetId": "subnet-0d9c84f9b7a4fac4d",
+            "cidr": "172.31.64.0/20",
+            "availabilityZone": "us-east-1f",
+            "routeTableId": "rtb-0c01ec4f9e73940cb"
+          }
+        ]
+      }
+    ]
+  },
+  "load-balancer-listener:account=539763292489:listenerArn=arn$:aws:elasticloadbalancing:us-east-1:539763292489:listener/app/propapay-alb/26d19fc20555ffdf/ff03934b92e8d554:loadBalancerType=application:region=us-east-1": {
+    "listenerArn": "arn:aws:elasticloadbalancing:us-east-1:539763292489:listener/app/propapay-alb/26d19fc20555ffdf/ff03934b92e8d554",
+    "listenerPort": 443,
+    "securityGroupIds": [
+      "sg-085ea14bbe7e19ccb"
+    ]
+  },
+  "security-group:account=539763292489:region=us-east-1:securityGroupId=sg-085ea14bbe7e19ccb": {
+    "securityGroupId": "sg-085ea14bbe7e19ccb",
+    "allowAllOutbound": false
+  }
+}
