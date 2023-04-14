@@ -221,17 +221,10 @@ export class EcsCdkStack extends cdk.Stack {
             commands: [
               'env',
               'export tag=latest',
-              'echo "Installing Node.js 18',
-              'n 18',
             ]
           },
           build: {
             commands: [
-              'cd src',
-              'npm install',
-              'npx prisma generate',
-              'npm run build',
-
               `docker build -t $ecr_repo_uri:$tag .`,
               '$(aws ecr get-login --no-include-email)',
               'docker push $ecr_repo_uri:$tag'
