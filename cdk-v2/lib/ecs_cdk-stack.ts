@@ -220,7 +220,9 @@ export class EcsCdkStack extends cdk.Stack {
             */
             commands: [
               'env',
-              'export tag=latest'
+              'export tag=latest',
+              'echo "Installing Node.js 18',
+              'n 18',
             ]
           },
           build: {
