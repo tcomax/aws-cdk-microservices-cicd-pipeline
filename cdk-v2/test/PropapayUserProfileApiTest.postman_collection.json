@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "12dbcf8d-f4d5-4335-ab09-cff298e8916c",
-		"name": "Propapay User Profile Service",
+		"name": "sampleapp User Profile Service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [

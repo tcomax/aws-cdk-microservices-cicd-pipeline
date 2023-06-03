@@ -169,8 +169,8 @@ export class EcsCdkStack extends cdk.Stack {
     taskDef.addToExecutionRolePolicy(executionRolePolicy);
 
 
-    const baseImage = '539763292489.dkr.ecr.us-east-1.amazonaws.com/propapay-authentication-service:latest'
-    //const baseImage = '539763292489.dkr.ecr.us-east-1.amazonaws.com/propapayauthorizationapi-ecrrepo714fb1b2-pkzipnrugt0z:latest'
+    const baseImage = '539763292489.dkr.ecr.us-east-1.amazonaws.com/sampleapp-authentication-service:latest'
+    //const baseImage = '539763292489.dkr.ecr.us-east-1.amazonaws.com/sampleappauthorizationapi-ecrrepo714fb1b2-pkzipnrugt0z:latest'
     const container = taskDef.addContainer(`${config.application}${config.serviceName}Container`, {
       image: ecs.ContainerImage.fromRegistry(baseImage),
       memoryLimitMiB: 2048,
@@ -196,7 +196,7 @@ export class EcsCdkStack extends cdk.Stack {
 
 
     /*  cdk cannot manage loadbalancers it did not create
-    const applicationLoadBalancerArn = 'arn:aws:elasticlobalancing:us-east-1:539763292489:loadbalancer/app/propapay-alb/26d19fc20555ffdf'
+    const applicationLoadBalancerArn = 'arn:aws:elasticlobalancing:us-east-1:539763292489:loadbalancer/app/sampleapp-alb/26d19fc20555ffdf'
     const loadBalancer = cdk.aws_elasticloadbalancingv2.ApplicationLoadBalancer.fromLookup(this, 'ALB', {
       loadBalancerArn: applicationLoadBalancerArn
     })
@@ -705,7 +705,7 @@ export class EcsCdkStack extends cdk.Stack {
     }));
 
     new cdk.CfnOutput(this, "image", { value: ecrRepo.repositoryUri + ":latest" })
-    new cdk.CfnOutput(this, 'loadbalancerdns', { value: "propapay-alb-578813700.us-east-1.elb.amazonaws.com" });
+    new cdk.CfnOutput(this, 'loadbalancerdns', { value: "sampleapp-alb-578813700.us-east-1.elb.amazonaws.com" });
 
     const artifactBucket = pipeline.artifactBucket;
     artifactBucket.applyRemovalPolicy(cdk.RemovalPolicy.DESTROY);

@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "c3a12bb9-65ed-478a-af87-426a091e23ed",
-		"name": "Propapay Paypoint Service",
+		"name": "sampleapp Paypoint Service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
