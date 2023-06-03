@@ -66,5 +66,17 @@
   "security-group:account=539763292489:region=us-east-1:securityGroupId=sg-085ea14bbe7e19ccb": {
     "securityGroupId": "sg-085ea14bbe7e19ccb",
     "allowAllOutbound": false
+  },
+  "security-group:account=539763292489:region=us-east-1:securityGroupName=propapayauthenticationApiSG:vpcId=vpc-019e94ba861d92f85": {
+    "securityGroupId": "sg-0d234619b540b32cd",
+    "allowAllOutbound": false
+  },
+  "security-group:account=539763292489:region=us-east-1:securityGroupName=propapayauthorizationApiSG:vpcId=vpc-019e94ba861d92f85": {
+    "securityGroupId": "sg-0dfa742a51f85d5d0",
+    "allowAllOutbound": false
+  },
+  "security-group:account=539763292489:region=us-east-1:securityGroupName=propapay-api-sg:vpcId=vpc-019e94ba861d92f85": {
+    "securityGroupId": "sg-0e9a4d245c787619f",
+    "allowAllOutbound": false
   }
 }

@@ -1,0 +1,684 @@
+{
+	"info": {
+		"_postman_id": "0ada834a-3eac-45c3-926e-c836ad78cf8a",
+		"name": "Propapay Authorization Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Role Service",
+			"item": [
+				{
+					"name": "Load Default Config",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(responseBody)",
+									"bodyValue = JSON.parse(responseBody)",
+									"userId = bodyValue.id",
+									"email = bodyValue.email",
+									"pm.environment.set(\"userId\",userId)",
+									"pm.environment.set(\"email\",email)",
+									"",
+									"//postman.setNextRequest(\"Login\")",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Propapay Super Admin\",\r\n    \"description\":\"Propapay Super Admin§\",\r\n    \"status\":\"ENABLED\",\r\n    \"createdBy\": \"{{userId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseUrl}}/role",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(responseBody)",
+									"bodyValue = JSON.parse(responseBody)",
+									"userId = bodyValue.id",
+									"email = bodyValue.email",
+									"pm.environment.set(\"userId\",userId)",
+									"pm.environment.set(\"email\",email)",
+									"",
+									"//postman.setNextRequest(\"Login\")",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Propapay Super Admin\",\r\n    \"description\":\"Propapay Super Admin§\",\r\n    \"status\":\"ENABLED\",\r\n    \"createdBy\": \"{{userId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseUrl}}/role",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Role To User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(responseBody)",
+									"bodyValue = JSON.parse(responseBody)",
+									"userId = bodyValue.id",
+									"email = bodyValue.email",
+									"pm.environment.set(\"userId\",userId)",
+									"pm.environment.set(\"email\",email)",
+									"",
+									"//postman.setNextRequest(\"Login\")",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"PTSP Super Admin\",\r\n    \"description\":\"PTSP Super Admin\",\r\n    \"status\":\"ALLOW\",\r\n    \"createdBy\": \"{{userId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseUrl}}/role/",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"role",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(responseBody)",
+									"bodyValue = JSON.parse(responseBody)",
+									"userId = bodyValue.id",
+									"email = bodyValue.email",
+									"pm.environment.set(\"userId\",userId)",
+									"pm.environment.set(\"email\",email)",
+									"",
+									"//postman.setNextRequest(\"Login\")",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n       \"id\": \"clfr8xffp00030jo3d2l6hmm1\",\r\n    \"name\":\"READ MERCHANTS CREATED BY SELF\",\r\n    \"description\":\"Can Update USERS\",\r\n    \"objectId\":\"*\",\r\n    \"objectType\":\"MERCHANTS\",\r\n    \"objectCreatedBy\":\"{{userId}}\",\r\n    \"createdBy\":\"{{userId}}\",\r\n    \"action\":\"READ\",\r\n    \"status\":\"ALLOW\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseUrl}}/permission",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"permission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Permission To Role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(responseBody)",
+									"bodyValue = JSON.parse(responseBody)",
+									"userId = bodyValue.id",
+									"email = bodyValue.email",
+									"pm.environment.set(\"userId\",userId)",
+									"pm.environment.set(\"email\",email)",
+									"",
+									"//postman.setNextRequest(\"Login\")",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"roleId\":\"clfpso76o00000jqwhnh1cmgy\",\r\n    \"permissionId\":\"obj1\",\r\n    \"createdBy\":\"{{userId}}\",\r\n    \"status\":\"GRANTED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseUrl}}/role/permission",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"role",
+								"permission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Roles By Creator",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"{{userId}}\",\r\n    \"lastName\":\"{{$randomFirstName}}\",\r\n    \"firstName\":\"{{$randomLastName}}\",\r\n    \"photoUrl\":\"me.jpg\",\r\n    \"phone\":\"{{$randomPhoneNumber}}\",\r\n    \"email\":\"{{email}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseUrl}}/roles/createdby/{{userId}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"roles",
+								"createdby",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Role By ID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"{{userId}}\",\r\n    \"lastName\":\"{{$randomFirstName}}\",\r\n    \"firstName\":\"{{$randomLastName}}\",\r\n    \"photoUrl\":\"me.jpg\",\r\n    \"phone\":\"{{$randomPhoneNumber}}\",\r\n    \"email\":\"{{email}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseUrl}}/role/clffrbxl600010jo3buq858lk",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"role",
+								"clffrbxl600010jo3buq858lk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Roles By Status",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"{{userId}}\",\r\n    \"lastName\":\"{{$randomFirstName}}\",\r\n    \"firstName\":\"{{$randomLastName}}\",\r\n    \"photoUrl\":\"me.jpg\",\r\n    \"phone\":\"{{$randomPhoneNumber}}\",\r\n    \"email\":\"{{email}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseUrl}}:{{authenticationServicePort}}/auth/verify",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{authenticationServicePort}}",
+							"path": [
+								"auth",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authorization Service",
+			"item": [
+				{
+					"name": "Add Permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(responseBody)",
+									"bodyValue = JSON.parse(responseBody)",
+									"userId = bodyValue.id",
+									"email = bodyValue.email",
+									"pm.environment.set(\"userId\",userId)",
+									"pm.environment.set(\"email\",email)",
+									"",
+									"//postman.setNextRequest(\"Login\")",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"roleId\":\"role1\",\r\n    \"objectId\":\"obj1\",\r\n    \"objectType\":\"MERCHANT\",\r\n    \"objectCreatedBy\":\"{{userId}}\",\r\n    \"createdBy\":\"{{userId}}\",\r\n    \"action\":\"CREATE\",\r\n    \"status\":\"ALLOW\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseUrl}}/authorization/",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"authorization",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(responseBody)",
+									"bodyValue = JSON.parse(responseBody)",
+									"userId = bodyValue.id",
+									"email = bodyValue.email",
+									"pm.environment.set(\"userId\",userId)",
+									"pm.environment.set(\"email\",email)",
+									"",
+									"//postman.setNextRequest(\"Login\")",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"roleId\":\"role1\",\r\n    \"objectId\":\"obj1\",\r\n    \"objectType\":\"MERCHANT\",\r\n    \"objectCreatedBy\":\"{{userId}}\",\r\n    \"createdBy\":\"{{userId}}\",\r\n    \"action\":\"CREATE\",\r\n    \"status\":\"ALLOW\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseUrl}}/authorization/",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"authorization",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health Check",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseUrl}}/authorization/health",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"authorization",
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
