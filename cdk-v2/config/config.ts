@@ -277,7 +277,7 @@ export const configuration =
                 priority: 110,
                 conditions: {
                     hostHeaders: ['api.sampleApi.replace-with-your-domain.com'],
-                    pathPatterns: ['/merchant*', '/store*', '/paypoint*'],
+                    pathPatterns: ['/merchant*'],
                 }
             },
             fargateService: {
