@@ -35,13 +35,13 @@
             "routeTableId": "rtb-0c01ec4f9e73940cb"
           },
           {
-            "subnetId": "subnet-0e5c3fb4ddd065fc7",
+            "subnetId": "subnet-yyyyyyyyyyyyyyyyyyyyyy",
             "cidr": "172.31.16.0/20",
             "availabilityZone": "us-east-1d",
             "routeTableId": "rtb-0c01ec4f9e73940cb"
           },
           {
-            "subnetId": "subnet-054667646fd339cb4",
+            "subnetId": "subnet-xxxxxxxxxxxxxxxxxxxx",
             "cidr": "172.31.48.0/20",
             "availabilityZone": "us-east-1e",
             "routeTableId": "rtb-0c01ec4f9e73940cb"
