@@ -1,29 +1,29 @@
 export const configuration =
     [
         {
-            application: 'sampleapp',
-            namespace: 'sampleapp.local',
-            namespaceId: 'ns-zzmjlght3byi2xq3',
-            namespaceArn: ' arn:aws:servicediscovery:us-east-1:539763292489:namespace/ns-zzmjlght3byi2xq3',
+            application: 'sampleApi',
+            namespace: 'sampleApi.local',
+            namespaceId: 'ns-xxxxxxxxxxxxxxxx',
+            namespaceArn: ' arn:aws:servicediscovery:us-east-1:xxxxxxxxxxxxxx:namespace/ns-xxxxxxxxxxxxxxxx',
             serviceName: 'authentication',
             port: 5555,
-            listenerName: '26d19fc20555ffdf/ff03934b92e8d554',
+            listenerName: 'xxxxxxxxxxxxxx/yyyyyyyyyyyyyyyyyyyy',
             vpcId: "vpc-019e94ba861d92f85",
             serviceSubnets: ['subnet-054667646fd339cb4', 'subnet-0e5c3fb4ddd065fc7'],
-            S3_BUCKET: "sampleappintegrationtests",
+            S3_BUCKET: "sampleApiintegrationtests",
             OwaspZapURL: "",
             OwaspZapApiKey: "",
             ApplicationURL: "",
             githubRepository: {
                 type: "String",
-                description: "sampleapp Authentication Service API - Github source code repository",
-                default: "sampleapp-authentication-service"
+                description: "sampleApi Authentication Service API - Github source code repository",
+                default: "sampleApi-authentication-service"
             },
             githubRepositoryBranch: "main",
             githubPersonalTokenSecretName: {
                 type: "String",
                 description: "The name of the AWS Secrets Manager Secret which holds the GitHub Personal Access Token for this project.",
-                default: "/sampleapp/github/access-token"
+                default: "/sampleApi/github/access-token"
             },
             githubUserName: {
                 type: "String",
@@ -31,17 +31,17 @@ export const configuration =
                 default: "tcomax"
             },
             albListener: {
-                listenerArn: 'arn:aws:elasticloadbalancing:us-east-1:539763292489:listener/app/sampleapp-alb/26d19fc20555ffdf/ff03934b92e8d554',
+                listenerArn: 'arn:aws:elasticloadbalancing:us-east-1:xxxxxxxxxxxxxx:listener/app/sampleApi-alb/xxxxxxxxxxxxxx/yyyyyyyyyyyyyyyyyyyy',
             },
             albListenerRule: {
                 priority: 123,
                 conditions: {
-                    hostHeaders: ['api.sampleapp.propagately.com'],
+                    hostHeaders: ['api.sampleApi.replace-with-your-domain.com'],
                     pathPatterns: ['/auth*', '/doc*'],
                 }
             },
             fargateService: {
-                serviceName: 'sampleappAuthServiceApi',
+                serviceName: 'sampleApiAuthServiceApi',
                 desiredCount: 1,
                 enableExecuteCommand: true,
                 healthCheckGracePeriod: 60,
@@ -56,34 +56,34 @@ export const configuration =
                 }
             },
             postman: {
-                environment: "sampleappAPITest.postman_environment.json",
-                collection: "sampleappAPITest.postman_collection.json",
+                environment: "sampleApiAPITest.postman_environment.json",
+                collection: "sampleApiAPITest.postman_collection.json",
             }
         },
         {
-            application: 'sampleapp',
-            namespace: 'sampleapp.local',
-            namespaceId: 'ns-zzmjlght3byi2xq3',
-            namespaceArn: ' arn:aws:servicediscovery:us-east-1:539763292489:namespace/ns-zzmjlght3byi2xq3',
+            application: 'sampleApi',
+            namespace: 'sampleApi.local',
+            namespaceId: 'ns-xxxxxxxxxxxxxxxx',
+            namespaceArn: ' arn:aws:servicediscovery:us-east-1:xxxxxxxxxxxxxx:namespace/ns-xxxxxxxxxxxxxxxx',
             serviceName: 'authorization',
             port: 5555,
-            listenerName: '26d19fc20555ffdf/ff03934b92e8d554',
+            listenerName: 'xxxxxxxxxxxxxx/yyyyyyyyyyyyyyyyyyyy',
             vpcId: "vpc-019e94ba861d92f85",
             serviceSubnets: ['subnet-054667646fd339cb4', 'subnet-0e5c3fb4ddd065fc7'],
-            S3_BUCKET: "sampleappintegrationtests",
+            S3_BUCKET: "sampleApiintegrationtests",
             OwaspZapURL: "",
             OwaspZapApiKey: "",
             ApplicationURL: "",
             githubRepository: {
                 type: "String",
-                description: "sampleapp Authorization Service API - Github source code repository",
-                default: "sampleapp-authorization-service"
+                description: "sampleApi Authorization Service API - Github source code repository",
+                default: "sampleApi-authorization-service"
             },
             githubRepositoryBranch: "main",
             githubPersonalTokenSecretName: {
                 type: "String",
                 description: "The name of the AWS Secrets Manager Secret which holds the GitHub Personal Access Token for this project.",
-                default: "/sampleapp/github/access-token"
+                default: "/sampleApi/github/access-token"
             },
             githubUserName: {
                 type: "String",
@@ -91,17 +91,17 @@ export const configuration =
                 default: "tcomax"
             },
             albListener: {
-                listenerArn: 'arn:aws:elasticloadbalancing:us-east-1:539763292489:listener/app/sampleapp-alb/26d19fc20555ffdf/ff03934b92e8d554',
+                listenerArn: 'arn:aws:elasticloadbalancing:us-east-1:xxxxxxxxxxxxxx:listener/app/sampleApi-alb/xxxxxxxxxxxxxx/yyyyyyyyyyyyyyyyyyyy',
             },
             albListenerRule: {
                 priority: 110,
                 conditions: {
-                    hostHeaders: ['api.sampleapp.propagately.com'],
+                    hostHeaders: ['api.sampleApi.replace-with-your-domain.com'],
                     pathPatterns: ['/authorization*', '/permission*', '/role*'],
                 }
             },
             fargateService: {
-                serviceName: 'sampleappAuthorizationApi',
+                serviceName: 'sampleApiAuthorizationApi',
                 desiredCount: 1,
                 enableExecuteCommand: true,
                 healthCheckGracePeriod: 60,
@@ -116,34 +116,34 @@ export const configuration =
                 }
             },
             postman: {
-                environment: "sampleappAPITest.postman_environment.json",
-                collection: "sampleappAPITest.postman_collection.json",
+                environment: "sampleApiAPITest.postman_environment.json",
+                collection: "sampleApiAPITest.postman_collection.json",
             }
         },
         {
-            application: 'sampleapp',
-            namespace: 'sampleapp.local',
-            namespaceId: 'ns-zzmjlght3byi2xq3',
-            namespaceArn: ' arn:aws:servicediscovery:us-east-1:539763292489:namespace/ns-zzmjlght3byi2xq3',
+            application: 'sampleApi',
+            namespace: 'sampleApi.local',
+            namespaceId: 'ns-xxxxxxxxxxxxxxxx',
+            namespaceArn: ' arn:aws:servicediscovery:us-east-1:xxxxxxxxxxxxxx:namespace/ns-xxxxxxxxxxxxxxxx',
             serviceName: 'user',
             port: 5555,
-            listenerName: '26d19fc20555ffdf/ff03934b92e8d554',
+            listenerName: 'xxxxxxxxxxxxxx/yyyyyyyyyyyyyyyyyyyy',
             vpcId: "vpc-019e94ba861d92f85",
             serviceSubnets: ['subnet-054667646fd339cb4', 'subnet-0e5c3fb4ddd065fc7'],
-            S3_BUCKET: "sampleappintegrationtests",
+            S3_BUCKET: "sampleApiintegrationtests",
             OwaspZapURL: "",
             OwaspZapApiKey: "",
             ApplicationURL: "",
             githubRepository: {
                 type: "String",
-                description: "sampleapp User Profile Service - Github source code repository",
-                default: "sampleapp-user-profile-service"
+                description: "sampleApi User Profile Service - Github source code repository",
+                default: "sampleApi-user-profile-service"
             },
             githubRepositoryBranch: "main",
             githubPersonalTokenSecretName: {
                 type: "String",
                 description: "The name of the AWS Secrets Manager Secret which holds the GitHub Personal Access Token for this project.",
-                default: "/sampleapp/github/access-token"
+                default: "/sampleApi/github/access-token"
             },
             githubUserName: {
                 type: "String",
@@ -151,17 +151,17 @@ export const configuration =
                 default: "tcomax"
             },
             albListener: {
-                listenerArn: 'arn:aws:elasticloadbalancing:us-east-1:539763292489:listener/app/sampleapp-alb/26d19fc20555ffdf/ff03934b92e8d554',
+                listenerArn: 'arn:aws:elasticloadbalancing:us-east-1:xxxxxxxxxxxxxx:listener/app/sampleApi-alb/xxxxxxxxxxxxxx/yyyyyyyyyyyyyyyyyyyy',
             },
             albListenerRule: {
                 priority: 190,
                 conditions: {
-                    hostHeaders: ['api.sampleapp.propagately.com'],
+                    hostHeaders: ['api.sampleApi.replace-with-your-domain.com'],
                     pathPatterns: ['/user*, /subscribe*'],
                 }
             },
             fargateService: {
-                serviceName: 'sampleappUserService',
+                serviceName: 'sampleApiUserService',
                 desiredCount: 1,
                 enableExecuteCommand: true,
                 healthCheckGracePeriod: 60,
@@ -176,34 +176,34 @@ export const configuration =
                 }
             },
             postman: {
-                environment: "sampleappAPITest.postman_environment.json",
-                collection: "sampleappAPITest.postman_collection.json",
+                environment: "sampleApiAPITest.postman_environment.json",
+                collection: "sampleApiAPITest.postman_collection.json",
             }
         },
         {
-            application: 'sampleapp',
-            namespace: 'sampleapp.local',
-            namespaceId: 'ns-zzmjlght3byi2xq3',
-            namespaceArn: ' arn:aws:servicediscovery:us-east-1:539763292489:namespace/ns-zzmjlght3byi2xq3',
+            application: 'sampleApi',
+            namespace: 'sampleApi.local',
+            namespaceId: 'ns-xxxxxxxxxxxxxxxx',
+            namespaceArn: ' arn:aws:servicediscovery:us-east-1:xxxxxxxxxxxxxx:namespace/ns-xxxxxxxxxxxxxxxx',
             serviceName: 'analytics',
             port: 5555,
-            listenerName: '26d19fc20555ffdf/ff03934b92e8d554',
+            listenerName: 'xxxxxxxxxxxxxx/yyyyyyyyyyyyyyyyyyyy',
             vpcId: "vpc-019e94ba861d92f85",
             serviceSubnets: ['subnet-054667646fd339cb4', 'subnet-0e5c3fb4ddd065fc7'],
-            S3_BUCKET: "sampleappintegrationtests",
+            S3_BUCKET: "sampleApiintegrationtests",
             OwaspZapURL: "",
             OwaspZapApiKey: "",
             ApplicationURL: "",
             githubRepository: {
                 type: "String",
-                description: "sampleapp Analytics Service API - Github source code repository",
-                default: "sampleapp-analytics-service"
+                description: "sampleApi Analytics Service API - Github source code repository",
+                default: "sampleApi-analytics-service"
             },
             githubRepositoryBranch: "main",
             githubPersonalTokenSecretName: {
                 type: "String",
                 description: "The name of the AWS Secrets Manager Secret which holds the GitHub Personal Access Token for this project.",
-                default: "/sampleapp/github/access-token"
+                default: "/sampleApi/github/access-token"
             },
             githubUserName: {
                 type: "String",
@@ -211,17 +211,17 @@ export const configuration =
                 default: "tcomax"
             },
             albListener: {
-                listenerArn: 'arn:aws:elasticloadbalancing:us-east-1:539763292489:listener/app/sampleapp-alb/26d19fc20555ffdf/ff03934b92e8d554',
+                listenerArn: 'arn:aws:elasticloadbalancing:us-east-1:xxxxxxxxxxxxxx:listener/app/sampleApi-alb/xxxxxxxxxxxxxx/yyyyyyyyyyyyyyyyyyyy',
             },
             albListenerRule: {
                 priority: 123,
                 conditions: {
-                    hostHeaders: ['api.sampleapp.propagately.com'],
+                    hostHeaders: ['api.sampleApi.replace-with-your-domain.com'],
                     pathPatterns: ['/analytics*'],
                 }
             },
             fargateService: {
-                serviceName: 'sampleappAnalyticsApi',
+                serviceName: 'sampleApiAnalyticsApi',
                 desiredCount: 1,
                 enableExecuteCommand: true,
                 healthCheckGracePeriod: 60,
@@ -236,34 +236,34 @@ export const configuration =
                 }
             },
             postman: {
-                environment: "sampleappAPITest.postman_environment.json",
-                collection: "sampleappAPITest.postman_collection.json",
+                environment: "sampleApiAPITest.postman_environment.json",
+                collection: "sampleApiAPITest.postman_collection.json",
             }
         },
         {
-            application: 'sampleapp',
-            namespace: 'sampleapp.local',
-            namespaceId: 'ns-zzmjlght3byi2xq3',
-            namespaceArn: ' arn:aws:servicediscovery:us-east-1:539763292489:namespace/ns-zzmjlght3byi2xq3',
+            application: 'sampleApi',
+            namespace: 'sampleApi.local',
+            namespaceId: 'ns-xxxxxxxxxxxxxxxx',
+            namespaceArn: ' arn:aws:servicediscovery:us-east-1:xxxxxxxxxxxxxx:namespace/ns-xxxxxxxxxxxxxxxx',
             serviceName: 'merchant',
             port: 5555,
-            listenerName: '26d19fc20555ffdf/ff03934b92e8d554',
+            listenerName: 'xxxxxxxxxxxxxx/yyyyyyyyyyyyyyyyyyyy',
             vpcId: "vpc-019e94ba861d92f85",
             serviceSubnets: ['subnet-054667646fd339cb4', 'subnet-0e5c3fb4ddd065fc7'],
-            S3_BUCKET: "sampleappintegrationtests",
+            S3_BUCKET: "sampleApiintegrationtests",
             OwaspZapURL: "",
             OwaspZapApiKey: "",
             ApplicationURL: "",
             githubRepository: {
                 type: "String",
-                description: "sampleapp Authorization Service API - Github source code repository",
-                default: "sampleapp-merchant-service"
+                description: "sampleApi Authorization Service API - Github source code repository",
+                default: "sampleApi-merchant-service"
             },
             githubRepositoryBranch: "main",
             githubPersonalTokenSecretName: {
                 type: "String",
                 description: "The name of the AWS Secrets Manager Secret which holds the GitHub Personal Access Token for this project.",
-                default: "/sampleapp/github/access-token"
+                default: "/sampleApi/github/access-token"
             },
             githubUserName: {
                 type: "String",
@@ -271,17 +271,17 @@ export const configuration =
                 default: "tcomax"
             },
             albListener: {
-                listenerArn: 'arn:aws:elasticloadbalancing:us-east-1:539763292489:listener/app/sampleapp-alb/26d19fc20555ffdf/ff03934b92e8d554',
+                listenerArn: 'arn:aws:elasticloadbalancing:us-east-1:xxxxxxxxxxxxxx:listener/app/sampleApi-alb/xxxxxxxxxxxxxx/yyyyyyyyyyyyyyyyyyyy',
             },
             albListenerRule: {
                 priority: 110,
                 conditions: {
-                    hostHeaders: ['api.sampleapp.propagately.com'],
+                    hostHeaders: ['api.sampleApi.replace-with-your-domain.com'],
                     pathPatterns: ['/merchant*', '/store*', '/paypoint*'],
                 }
             },
             fargateService: {
-                serviceName: 'sampleappMerchantApi',
+                serviceName: 'sampleApiMerchantApi',
                 desiredCount: 1,
                 enableExecuteCommand: true,
                 healthCheckGracePeriod: 60,
@@ -296,34 +296,34 @@ export const configuration =
                 }
             },
             postman: {
-                environment: "sampleappAPITest.postman_environment.json",
-                collection: "sampleappAPITest.postman_collection.json",
+                environment: "sampleApiAPITest.postman_environment.json",
+                collection: "sampleApiAPITest.postman_collection.json",
             }
         },
         {
-            application: 'sampleapp',
-            namespace: 'sampleapp.local',
-            namespaceId: 'ns-zzmjlght3byi2xq3',
-            namespaceArn: ' arn:aws:servicediscovery:us-east-1:539763292489:namespace/ns-zzmjlght3byi2xq3',
+            application: 'sampleApi',
+            namespace: 'sampleApi.local',
+            namespaceId: 'ns-xxxxxxxxxxxxxxxx',
+            namespaceArn: ' arn:aws:servicediscovery:us-east-1:xxxxxxxxxxxxxx:namespace/ns-xxxxxxxxxxxxxxxx',
             serviceName: 'paystack',
             port: 5555,
-            listenerName: '26d19fc20555ffdf/ff03934b92e8d554',
+            listenerName: 'xxxxxxxxxxxxxx/yyyyyyyyyyyyyyyyyyyy',
             vpcId: "vpc-019e94ba861d92f85",
             serviceSubnets: ['subnet-054667646fd339cb4', 'subnet-0e5c3fb4ddd065fc7'],
-            S3_BUCKET: "sampleappintegrationtests",
+            S3_BUCKET: "sampleApiintegrationtests",
             OwaspZapURL: "",
             OwaspZapApiKey: "",
             ApplicationURL: "",
             githubRepository: {
                 type: "String",
-                description: "sampleapp Paystack Integration Service Middleware - Github source code repository",
-                default: "sampleapp-paystack-integration-service"
+                description: "sampleApi Paystack Integration Service Middleware - Github source code repository",
+                default: "sampleApi-paystack-integration-service"
             },
             githubRepositoryBranch: "main",
             githubPersonalTokenSecretName: {
                 type: "String",
                 description: "The name of the AWS Secrets Manager Secret which holds the GitHub Personal Access Token for this project.",
-                default: "/sampleapp/github/access-token"
+                default: "/sampleApi/github/access-token"
             },
             githubUserName: {
                 type: "String",
@@ -331,12 +331,12 @@ export const configuration =
                 default: "tcomax"
             },
             albListener: {
-                listenerArn: 'arn:aws:elasticloadbalancing:us-east-1:539763292489:listener/app/sampleapp-alb/26d19fc20555ffdf/ff03934b92e8d554',
+                listenerArn: 'arn:aws:elasticloadbalancing:us-east-1:xxxxxxxxxxxxxx:listener/app/sampleApi-alb/xxxxxxxxxxxxxx/yyyyyyyyyyyyyyyyyyyy',
             },
             albListenerRule: {
                 priority: 190,
                 conditions: {
-                    hostHeaders: ['api.sampleapp.propagately.com'],
+                    hostHeaders: ['api.sampleApi.replace-with-your-domain.com'],
                     pathPatterns: ['/paystack*'],
                 }
             },
@@ -356,8 +356,8 @@ export const configuration =
                 }
             },
             postman: {
-                environment: "sampleappAPITest.postman_environment.json",
-                collection: "sampleappAPITest.postman_collection.json",
+                environment: "sampleApiAPITest.postman_environment.json",
+                collection: "sampleApiAPITest.postman_collection.json",
             }
         }
     ]

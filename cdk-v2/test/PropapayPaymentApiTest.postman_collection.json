@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "8b2ed7db-e3f0-4602-a70a-72f349e2bed3",
-		"name": "sampleapp Payment Service",
+		"name": "sampleApi Payment Service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [

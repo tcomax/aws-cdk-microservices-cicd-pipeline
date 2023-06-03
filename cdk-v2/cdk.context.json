@@ -1,5 +1,5 @@
 {
-  "availability-zones:account=539763292489:region=us-east-1": [
+  "availability-zones:account=xxxxxxxxxxxxxx:region=us-east-1": [
     "us-east-1a",
     "us-east-1b",
     "us-east-1c",
@@ -7,7 +7,7 @@
     "us-east-1e",
     "us-east-1f"
   ],
-  "vpc-provider:account=539763292489:filter.vpc-id=vpc-019e94ba861d92f85:region=us-east-1:returnAsymmetricSubnets=true": {
+  "vpc-provider:account=xxxxxxxxxxxxxx:filter.vpc-id=vpc-019e94ba861d92f85:region=us-east-1:returnAsymmetricSubnets=true": {
     "vpcId": "vpc-019e94ba861d92f85",
     "vpcCidrBlock": "172.31.0.0/16",
     "availabilityZones": [],
@@ -56,26 +56,26 @@
       }
     ]
   },
-  "load-balancer-listener:account=539763292489:listenerArn=arn$:aws:elasticloadbalancing:us-east-1:539763292489:listener/app/sampleapp-alb/26d19fc20555ffdf/ff03934b92e8d554:loadBalancerType=application:region=us-east-1": {
-    "listenerArn": "arn:aws:elasticloadbalancing:us-east-1:539763292489:listener/app/sampleapp-alb/26d19fc20555ffdf/ff03934b92e8d554",
+  "load-balancer-listener:account=xxxxxxxxxxxxxx:listenerArn=arn$:aws:elasticloadbalancing:us-east-1:xxxxxxxxxxxxxx:listener/app/sampleApi-alb/xxxxxxxxxxxxxx/yyyyyyyyyyyyyyyyyyyy:loadBalancerType=application:region=us-east-1": {
+    "listenerArn": "arn:aws:elasticloadbalancing:us-east-1:xxxxxxxxxxxxxx:listener/app/sampleApi-alb/xxxxxxxxxxxxxx/yyyyyyyyyyyyyyyyyyyy",
     "listenerPort": 443,
     "securityGroupIds": [
       "sg-085ea14bbe7e19ccb"
     ]
   },
-  "security-group:account=539763292489:region=us-east-1:securityGroupId=sg-085ea14bbe7e19ccb": {
+  "security-group:account=xxxxxxxxxxxxxx:region=us-east-1:securityGroupId=sg-085ea14bbe7e19ccb": {
     "securityGroupId": "sg-085ea14bbe7e19ccb",
     "allowAllOutbound": false
   },
-  "security-group:account=539763292489:region=us-east-1:securityGroupName=sampleappauthenticationApiSG:vpcId=vpc-019e94ba861d92f85": {
+  "security-group:account=xxxxxxxxxxxxxx:region=us-east-1:securityGroupName=sampleApiauthenticationApiSG:vpcId=vpc-019e94ba861d92f85": {
     "securityGroupId": "sg-0d234619b540b32cd",
     "allowAllOutbound": false
   },
-  "security-group:account=539763292489:region=us-east-1:securityGroupName=sampleappauthorizationApiSG:vpcId=vpc-019e94ba861d92f85": {
+  "security-group:account=xxxxxxxxxxxxxx:region=us-east-1:securityGroupName=sampleApiauthorizationApiSG:vpcId=vpc-019e94ba861d92f85": {
     "securityGroupId": "sg-0dfa742a51f85d5d0",
     "allowAllOutbound": false
   },
-  "security-group:account=539763292489:region=us-east-1:securityGroupName=sampleapp-api-sg:vpcId=vpc-019e94ba861d92f85": {
+  "security-group:account=xxxxxxxxxxxxxx:region=us-east-1:securityGroupName=sampleApi-api-sg:vpcId=vpc-019e94ba861d92f85": {
     "securityGroupId": "sg-0e9a4d245c787619f",
     "allowAllOutbound": false
   }

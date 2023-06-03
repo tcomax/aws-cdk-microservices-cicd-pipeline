@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "0ada834a-3eac-45c3-926e-c836ad78cf8a",
-		"name": "sampleapp Authorization Service",
+		"name": "sampleApi Authorization Service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -52,7 +52,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"sampleapp Super Admin\",\r\n    \"description\":\"sampleapp Super Admin§\",\r\n    \"status\":\"ENABLED\",\r\n    \"createdBy\": \"{{userId}}\"\r\n}",
+							"raw": "{\r\n    \"name\":\"sampleApi Super Admin\",\r\n    \"description\":\"sampleApi Super Admin§\",\r\n    \"status\":\"ENABLED\",\r\n    \"createdBy\": \"{{userId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -116,7 +116,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"sampleapp Super Admin\",\r\n    \"description\":\"sampleapp Super Admin§\",\r\n    \"status\":\"ENABLED\",\r\n    \"createdBy\": \"{{userId}}\"\r\n}",
+							"raw": "{\r\n    \"name\":\"sampleApi Super Admin\",\r\n    \"description\":\"sampleApi Super Admin§\",\r\n    \"status\":\"ENABLED\",\r\n    \"createdBy\": \"{{userId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
