@@ -1,8 +1,11 @@
-# Amazon CI/CD pipeline deploying to ECS Fargate using CDK V2
+# AWS CI/CD pipeline deploying Microservices to ECS Fargate using CDK V2
 _A complete DevOps enabled sample containerized application_
 
-This project builds a complete sample containerized Flask application publically available on AWS, using Fargate, ECS, CodeBuild, and CodePipline to produce a fully functional pipline to continuously roll out
-changes to your new app.
+This project builds a complete sample containerized Node.JS application publically available on AWS, using Fargate, ECS, CloudMap, ELB, RDS, CodeBuild, and CodePipline to produce a fully functional pipeline to continuously roll out changes to the new app.
+
+## CI/CD Pipeline Architecture
+
+![image](https://github.com/tcomax/aws-cdk-microservices-cicd-pipeline/assets/31625699/071d3f52-9895-426c-8a10-53e064b51e32)
 
 ## Getting Started
 
