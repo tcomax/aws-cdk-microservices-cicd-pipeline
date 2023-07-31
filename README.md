@@ -9,45 +9,15 @@ This project builds a complete sample containerized Node.JS application publical
 
 ## Getting Started
 
-We recommend using [Cloud 9]() to get started, however you may also use your own
-development machine. You will need to adjust the commands to install base
-requirements like jq, npm, AWS CDK, AWS CLI, and Typescript.
-
-
-### Setup Cloud9 Environment
-
-Launch a `t2.micro` [Cloud9 us-east-1](https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines) terminal and prepare it with following commands:
-
-```bash
-sudo yum install -y jq
-export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
-export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
-echo "export ACCOUNT_ID=${ACCOUNT_ID}" | tee -a ~/.bash_profile
-echo "export AWS_REGION=${AWS_REGION}" | tee -a ~/.bash_profile
-aws configure set default.region ${AWS_REGION}
-aws configure get default.region
-```
-
-Ensure the Cloud9 instance is assigned a role of an administrator and from Cloud9 -> AWS Settings -> Credentials -> Disable the Temporary Credentials
-
-Prepare CDK prerequisite:
-
-```bash
-sudo yum install -y npm
-npm install -g aws-cdk
-npm install -g typescript@latest
-```
-
-Then, make sure you have your AWS account configured. Run `aws configure` or
-ensure the `AWS_ACCESS_KEY`, `AWS_SECRET_ACCESS_KEY`, and `AWS_SESSION_TOKEN`
-environment variables are properly set.
+I recommend using VS-Code to get started, however, you may also use any preferred
+development IDE. You will need to install base requirements like jq, npm, AWS CDK, AWS CLI, and Typescript.
 
 ### Configure the GitHub Repository and upload the application
 
 Open https://github.com/aws-samples/amazon-ecs-fargate-cdk-v2-cicd.
 Login to GitHub, and fork the repository into your account.
 
-Access your Cloud9 environment and run the following command from the `~/environment` directory, replacing USER-NAME with your GitHub username. 
+Access your local environment and run the following command from the `~/environment` directory, replacing USER-NAME with your GitHub username. 
 
 ```bash
 git clone https://github.com/USER-NAME/amazon-ecs-fargate-cdk-v2-cicd.git 
@@ -55,7 +25,7 @@ git clone https://github.com/USER-NAME/amazon-ecs-fargate-cdk-v2-cicd.git
 
 ### Create a Secret for your GitHub Token
 
-As a security best practice, never hard-code your GitHub token in the code. We will make use of AWS Secrets Manager service to store the GitHub Token and use the CDK APIs to access the token from our code.
+Make use of AWS Secrets Manager service to store the GitHub Token and use the CDK APIs to access the token from the application code to avoid hard-coding your GitHub token in the code. 
 
 #### Create a Personal access token in Github. 
 Using the Github website, navigate to Settings/Developer Settings/Personal access tokens, create a new token with the following permissions:
@@ -71,12 +41,12 @@ and don't close the window yet, you will need the token value in the next step.
 By default name for this secret is 
 `/aws-samples/amazon-ecs-fargate-cdk-v2-cicd/github/personal_access_token`. 
 
-To change the secret name, make the proper subsititions below,and then specify the optional `githubTokenSecretName` parameter during the [`cdk deploy step`](#launch-infrastructure-with-aws-cloud-developement-kit-cdk).
+To change the secret name, make the proper substitutions below, and then specify the optional `githubTokenSecretName` parameter during the [`cdk deploy step`](#launch-infrastructure-with-aws-cloud-developement-kit-cdk).
 
 ```bash
 aws configure set region $AWS_REGION
 aws secretsmanager create-secret \
- --name /aws-samples/amazon-ecs-fargate-cdk-v2-cicd/github/personal_access_token \
+ --name /proppa/GitHub/personal_access_token \
  --secret-string <GITHUB-TOKEN> 
 ```
 
